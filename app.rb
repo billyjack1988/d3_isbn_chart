@@ -8,6 +8,5 @@ enable :sessions
 
 get '/' do
     list = get_file()
-    p "#{list}"
-    #erb :raw, locals:{list:list}
+    erb :layout, locals:{list:list}
 end    

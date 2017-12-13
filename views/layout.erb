@@ -1,0 +1,46 @@
+<html>
+<head>
+hello, you are on this page
+
+    <title>Learning D3</title>
+    <script scr="http://d3js.org.d3.v3.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+here is inside the body
+    <div id="chart">here is inside the div</div>
+<script>
+    
+    var myData = [100,125,320,440,500]; //data varriables
+    
+    var hieght = 500;   //hieght of the chart
+    
+    var width = 500;    //width of the chart
+    
+    var berWidth = 35;  //width of the bars
+    
+    var barOffset = 5;  //distance between each bar
+
+    var myChart = d3.select('#chart').append('svg')
+        .attr('width', width)
+        .attr('hieght', hieght)
+        .style('background', 'black')
+        .selectAll('rect')
+            .data(myData)
+            .enter().append('rect')
+                .style('fill', 'blue')
+                attr('width', barWidth)
+                attr('hieght', function(d){
+                    return d;
+                })
+                .attr('x', function(d, i){
+                    return i * (barWidth + barOffset
+                    );
+                })
+                .attr('y', function(d){
+                    return hieght - d;
+                })
+
+</script>
+</body>
+</html>        
