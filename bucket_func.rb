@@ -4,6 +4,7 @@ require 'csv'
 
 
 load './local_env.rb' if File.exist?('./local_env.rb')
+
 def connect_to_s3()
  Aws::S3::Client.new(
     access_key_id: ENV['AWS_ACCESS_KEY_ID'],
@@ -22,17 +23,35 @@ File.open('myresults.csv', 'rb') do |file|
 end
 end
 
-def get_object()
-   s3 = Aws::S3::Client.new
+
+
+def get_file()
+    s3 = Aws::S3::Client.new
   resp = s3.get_object(bucket:'isbnbucket14', key:'myresults.csv')
   isbn = resp.body.read
-    yup = isbn.split
-    uknow = []
-    yup.each do |item|
+  
+  jim = isbn.split
+      list = []
+    jim.each do |item|
     item.gsub!(/"/, '')
-    uknow << item
+    list << item
     end
-  uknow
-end
+    p "#{list}!!!!!!!!!!!!!!!!"
+  list
+end 
+# def get_object()
+#    s3 = Aws::S3::Client.new
+#   resp = s3.get_object(bucket:'isbnbucket14', key:'myresults.csv')
+#   isbn = resp.body.read
 
-connect_to_s3()
+#     yup = isbn.split
+#     uknow = []
+#     p "yup"
+#     yup.each do |item|
+#     item.gsub!(/"/, '')
+#     uknow << item
+#     end
+#   uknow
+# end
+
+ connect_to_s3()
