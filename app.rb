@@ -8,5 +8,11 @@ enable :sessions
 
 get '/' do
     list = get_file()
-    erb :layout, locals:{list:list}
+    # p "#{list}"
+    erb :raw_data, locals: {list:list}
 end    
+
+post "d3_look" do
+
+
+end
