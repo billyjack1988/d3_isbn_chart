@@ -17,10 +17,10 @@
     <p> </p>
     <p> </p>
     <script>
-    d3.csv("/d3_isbn_chart/employees.csv", function(data) {
+    d3.csv("https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD", function(data) {
     for (var i = 0; i < data.length; i++) {
-        console.log(data[i].Name);
-        console.log(data[i].Age);
+        console.log(data[i]);
+        //console.log(data[i].Age);
     }
 });
 

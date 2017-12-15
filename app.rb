@@ -18,12 +18,24 @@ post "d3_look" do
 
 end
 
-get '/d3_isbn_chart/employees.csv' do
-    arr_of_arrs = CSV.read("employees.csv")
+# get '/d3_isbn_chart/employees.csv' do
+#     a = []
+#     x = CSV.read("employees.csv")
+#     CSV.parse(x) do |row|
+#         a << row
+#     end
+#     "#{a}"
     
-    p  "#{arr_of_arrs}"
-    erb :raw_data, locals: {arr_of_arrs:arr_of_arrs}
     
+    # arr_of_arrs = CSV.read("employees.csv")
+    # a = 
+    # p  "#{arr_of_arrs}"
+    # arr_of_arrs
+    # x = ["returnthis"]
+    # x = arr_of_arrs.to_a.flatten
+    # p  "#{x}"
+    # "#{x}"
+    # erb :raw_data, locals: {x:x}
     
     
     # x = []
@@ -33,5 +45,5 @@ get '/d3_isbn_chart/employees.csv' do
     #     end    
     # end    
     # p  "#{x}"
-end    
+#end    
 
