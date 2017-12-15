@@ -1,24 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
+    <style>
+        #container {
+            height: 500px;
+            width: 500px;
+            background-color: orange;
+
+        }
+    </style>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <style>
 
 </style>
 </head>
-<body>
-
-<script>
-d3.csv("/d3_protype/employees.csv", function(data) {
-  for (var i = 0; i < data.length; i++) {
-      console.log(data[i].Name);
-      console.log(data[i].Age);
-  }
+<body id="container">
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <script>
+    d3.csv("/d3_isbn_chart/employees.csv", function(data) {
+    for (var i = 0; i < data.length; i++) {
+        console.log(data[i].Name);
+        console.log(data[i].Age);
+    }
 });
-
 
 </script>
 </body>
+
 </html>
