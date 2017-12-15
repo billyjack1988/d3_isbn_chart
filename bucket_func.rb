@@ -36,7 +36,7 @@ def get_file()
     item.gsub!(/"/, '')
     list << item
     end
-    p "#{list}!!!!!!!!!!!!!!!!"
+    #p "#{list}!!!!!!!!!!!!!!!!"
   list
 end 
 # def get_object()
