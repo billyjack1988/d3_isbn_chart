@@ -12,7 +12,8 @@ get '/' do
     erb :raw_data, locals: {list:list}
 end    
 
-post "d3_look" do
-
-
+get '/d3_protype/employees.csv' do    
+    arr_of_arrs = CSV.read("employee.csv")
+    p "#{arr_of_arrs}"
 end
+
