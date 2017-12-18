@@ -14,29 +14,21 @@ get '/' do
     validcount = howmanyvalid(validated)
     invalidcount = howmanyinvalid(validated)
     infoarr = joinscounts(validcount,invalidcount)
-     p "#{infoarr}"
-    #erb :raw_data, locals: {list:list}
+    #  p "#{infoarr}"
+    erb :first_daft, locals: {infoarr:infoarr}
 end    
 
-<<<<<<< HEAD
-# get '/' do   
-#     list = get_file() 
-#      x = CSV.read("myresults.csv")
-#         # p "#{x}"
-#     erb :first_daft, locals: {x:x, list:list}
-=======
 # get '/' do    
 #      x = CSV.read("employees.csv")
-#         p "#{x}"
+#         # p "#{x}"
 #     erb :first_daft, locals: {x:x}
->>>>>>> 5066e4d7a70ec71ca1b87b674dafbebee6116eb3
      
 # end
 
-get '/' do 
+# get '/' do 
         
-    erb :second_darft
+#     erb :second_darft
      
-end
+# end
   
 

@@ -43,8 +43,8 @@ end
 
 def joinscounts(validcount,invalidcount)
     infoarr = []
-    infoarr << validcount
-    infoarr << invalidcount
-    p "#{infoarr}"
+    infoarr << validcount.to_i
+    infoarr << invalidcount.to_i
+    p "#{infoarr[0].class}"
     infoarr
 end    
