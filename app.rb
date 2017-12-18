@@ -13,12 +13,18 @@ enable :sessions
 #     erb :raw_data, locals: {list:list}
 # end    
 
-get '/' do    
-     x = CSV.read("employees.csv").flatten
-        p "#{x}"
-    erb :first_daft, locals: {x:x}
+# get '/' do   
+#     list = get_file() 
+#      x = CSV.read("myresults.csv")
+#         # p "#{x}"
+#     erb :first_daft, locals: {x:x, list:list}
+     
+# end
+
+get '/' do 
+        
+    erb :second_darft
      
 end
-
   
 
