@@ -16,6 +16,7 @@ get '/' do
     infoarr = joinscounts(validcount,invalidcount)
      p "#{infoarr}"
     #erb :raw_data, locals: {list:list}
+    erb :simplebargraph
 end    
 
 # get '/' do    
