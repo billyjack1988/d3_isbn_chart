@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <script src="http://d3js.org/d3.v4.min.js"></script>
 
+<center><h3> This is what the data looks like in the csv<h3></center>
+<h4>year,value<br>
+2011,45<br>
+2012,47<br>
+2013,52<br>
+2014,70<br>
+2015,75<br>
+2016,78</h4><br>
+
+
+
+
+
+<center><h3>This is a simple D3 Bar Chart<h3></center>
 <style>
   <style>
           .bar {
@@ -35,20 +49,20 @@ var svg = d3.select("svg"), // this is a call func for d3 to select the svg and 
             throw error;
         }
 
-        xScale.domain(data.map(function(d) { return d.year; }));
+        xScale.domain(data.map(function(d) { return d.year; })); // Now that we have loaded our data, we can provide our domain values to the x and y scales.We use data.map() to map our discrete year values to the x scale.
         yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
 
         g.append("g") // this "g" means group so when you g.append you are calling on all in that group 
          .attr("transform", "translate(0," + height + ")")
-         .call(d3.axisBottom(xScale))
+         .call(d3.axisBottom(xScale)) // we added anothor group element to our x-axis 
          .append("text")
          .attr("y", height - 250)
          .attr("x", width - 100)
          .attr("text-anchor", "end")
-         .attr("stroke", "black")
-         .text("Year");
+         .attr("stroke", "black") // this is to style you text 
+         .text("Year");// this is you text  
 
-        g.append("g")
+        g.append("g")                                        //  we add another group element to hold the y-axis and its components. We add the y-axis using
          .call(d3.axisLeft(yScale).tickFormat(function(d){   // Since our y-axis depicts a currency value, we have formatted our ticks using the tickFormat() method. We have also specified the number of ticks we would like our y-axis to have using ticks(10)
              return "$" + d;
          })
@@ -63,13 +77,16 @@ var svg = d3.select("svg"), // this is a call func for d3 to select the svg and 
 
         g.selectAll(".bar")
          .data(data)
-         .enter().append("rect")
-         .attr("class", "bar")
-         .attr("x", function(d) { return xScale(d.year); })
-         .attr("y", function(d) { return yScale(d.value); })
-         .attr("width", xScale.bandwidth())
-         .attr("height", function(d) { return height - yScale(d.value); });
+         .enter().append("rect")// We have created dynamic bars with our data using the SVG rectangle element.
+         .attr("class", "bar") // We also add a class "bar" to the rectangle element.
+         .attr("x", function(d) { return xScale(d.year); }) // We use the x scale created earlier and pass the year value from our data. The x scales returns the corresponding x value from the range specified to our scale. In this case, it is the width of the SVG.
+         .attr("y", function(d) { return yScale(d.value); }) // Similarly, we pass the data value to our y scale and receive the corresponding y value from the y range.
+         .attr("width", xScale.bandwidth()) // The width of our bars would be determined by the scaleBand() function. So, the x-scale returns a calculated bandwidth from the range and padding provided to the x-scale.
+         .attr("height", function(d) { return height - yScale(d.value); }); //The height of the bar would be calculated as height - yScale(d.value). This would be the height of the SVG minus the corresponding y-value of the bar from the y-scale. Remember that the y-value here would be the tip of the bar since it is calculated from the origin and origin is at (0,0).
     });
 </script>
-
-</body></html>
+<form method= "post" action= "/second_darft">
+    <input type= "submit" value = "Animated Bar Chart">
+</form> 
+</body>
+</html>

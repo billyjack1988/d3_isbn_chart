@@ -18,17 +18,12 @@ get '/' do
     erb :first_daft, locals: {infoarr:infoarr}
 end    
 
-# get '/' do    
-#      x = CSV.read("employees.csv")
-#         # p "#{x}"
-#     erb :second_darft, locals: {x:x}
-     
-# end
+post '/second_darft' do
+    erb :second_darft
+  end
 
-# get '/' do 
-        
-#     erb :second_darft
-     
-# end
+  post '/offthewall' do
+    erb :raw_data 
+  end
   
 
