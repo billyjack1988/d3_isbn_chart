@@ -21,7 +21,7 @@ end
 # get '/' do    
 #      x = CSV.read("employees.csv")
 #         # p "#{x}"
-#     erb :first_daft, locals: {x:x}
+#     erb :second_darft, locals: {x:x}
      
 # end
 
