@@ -25,5 +25,19 @@ post '/second_darft' do
   post '/offthewall' do
     erb :raw_data 
   end
-  
+
+  post '/yup' do
+    erb :try_it
+  end
+
+  post '/usamap' do
+    erb :usa_map
+  end
+
+  post '/ld_page' do
+    erb :ld_page
+end
+
+
+
 
