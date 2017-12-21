@@ -1,35 +1,139 @@
+<!DOCTYPE html>
+<script src="http://d3js.org/d3.v4.min.js"></script>
+
+<center><h3> This is what the data looks like in the csv<h3></center>
+<h4>year,value<br>
+2011,45<br>
+2012,47<br>
+2013,52<br>
+2014,70<br>
+2015,75<br>
+2016,78</h4><br>
+
+<center><h3> This is a Animated D3 Bar Chart</h3></center> 
+<html>
+<head>
+    <style>
+        .bar {
+            fill: steelblue;
+        }
+
+        .highlight {
+            fill: orange;
+        }
+</style>
+</head>
+<body>
+<svg width="600" height="500"></svg>
 <script>
 
-var temperatures = [
-    {temp: 32, month: 'January'},
-    {temp: 38, month: 'February'},
-    {temp: 47, month: 'March'},
-    {temp: 59, month: 'April'},
-    {temp: 70, month: 'May'},
-    {temp: 80, month: 'June'},
-    {temp: 84, month: 'July'},
-    {temp: 83, month: 'Auguest'},
-    {temp: 76, month: 'September'},
-    {temp: 64, month: 'October'},
-    {temp: 49, month: 'November'},
-    {temp: 37, month: 'December'}
-  ];
-  var months = temperatures.map(function(t) {
-    return t.month
-  })
+    var svg = d3.select("svg"),
+        margin = 200,
+        width = svg.attr("width") - margin,
+        height = svg.attr("height") - margin;
 
-  var margin = {top: 5, right: 5, bottom: 50, left: 50};
-  // here, we want the full chart to be 700x200, so we determine
-  // the width and height by subtracting the margins from those values
-  var fullWidth = 700;
-  var fullHeight = 200;
-  // the width and height values will be used in the ranges of our scales
-  var width = fullWidth - margin.right - margin.left;
-  var height = fullHeight - margin.top - margin.bottom;
-  var svg = d3.select('#holder').append('svg')
-    .attr('width', fullWidth)
-    .attr('height', fullHeight)
-    // this g is where the bar chart will be drawn
-    .append('g')
-      // translate it to leave room for the left and top margins
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+    svg.append("text")
+       .attr("transform", "translate(100,0)")
+       .attr("x", 50)
+       .attr("y", 50)
+       .attr("font-size", "24px")
+       .text("XYZ Foods Stock Price")
+
+    var x = d3.scaleBand().range([0, width]).padding(0.4),
+        y = d3.scaleLinear().range([height, 0]);
+
+    var g = svg.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+    d3.csv("csv/XYZ.csv", function(error, data) {
+        if (error) {
+            throw error;
+        }
+
+        x.domain(data.map(function(d) { return d.year; }));
+        y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+        g.append("g")
+         .attr("transform", "translate(0," + height + ")")
+         .call(d3.axisBottom(x))
+         .append("text")
+         .attr("y", height - 250)
+         .attr("x", width - 100)
+         .attr("text-anchor", "end")
+         .attr("stroke", "black")
+         .text("Year");
+
+        g.append("g")
+         .call(d3.axisLeft(y).tickFormat(function(d){
+             return "$" + d;
+         }).ticks(10))
+         .append("text")
+         .attr("transform", "rotate(-90)")
+         .attr("y", 6)
+         .attr("dy", "-5.1em")
+         .attr("text-anchor", "end")
+         .attr("stroke", "black")
+         .text("Stock Price");
+
+        g.selectAll(".bar")
+         .data(data)
+         .enter().append("rect")
+         .attr("class", "bar")
+         .on("mouseover", onMouseOver) //Add listener for the mouseover event
+         .on("mouseout", onMouseOut)   //Add listener for the mouseout event
+         .attr("x", function(d) { return x(d.year); })
+         .attr("y", function(d) { return y(d.value); })
+         .attr("width", x.bandwidth())
+         .transition()
+         .ease(d3.easeLinear)
+         .duration(400)
+         .delay(function (d, i) {
+             return i * 50;
+         })
+         .attr("height", function(d) { return height - y(d.value); });
+    });
+    
+    //mouseover event handler function
+    function onMouseOver(d, i) {
+        d3.select(this).attr('class', 'highlight');
+        d3.select(this)
+          .transition()     // adds animation
+          .duration(400)
+          .attr('width', x.bandwidth() + 5)
+          .attr("y", function(d) { return y(d.value) - 10; })
+          .attr("height", function(d) { return height - y(d.value) + 10; });
+
+        g.append("text")
+         .attr('class', 'val') 
+         .attr('x', function() {
+             return x(d.year);
+         })
+         .attr('y', function() {
+             return y(d.value) - 15;
+         })
+         .text(function() {
+             return [ '$' +d.value];  // Value of the text
+         });
+    }
+
+    //mouseout event handler function
+    function onMouseOut(d, i) {
+        // use the text label class to remove label on mouseout
+        d3.select(this).attr('class', 'bar');
+        d3.select(this)
+          .transition()     // adds animation
+          .duration(400)
+          .attr('width', x.bandwidth())
+          .attr("y", function(d) { return y(d.value); })
+          .attr("height", function(d) { return height - y(d.value); });
+
+        d3.selectAll('.val')
+          .remove()
+    }
+
+</script>
+</body>
+<form method= "post" action= "/offthewall">
+    <input type= "submit" value = "Next Page">
+</form>
+</html>
