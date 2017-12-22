@@ -3,21 +3,20 @@ require_relative 'databasefunc.rb'
 require_relative 'functions.rb'
 require "csv"
 require 'rubygems'
-
 require 'pg'
-
 load './local_env.rb' if File.exist?('./local_env.rb')
 enable :sessions
 
 get '/' do
     check_connection()
+    info = getinfo()
     # list = get_file()
     # validated = gettingvalid(list)
     # validcount = howmanyvalid(validated)
     # invalidcount = howmanyinvalid(validated)
     # infoarr = joinscounts(validcount,invalidcount)
-    #  p "#{infoarr}"
-    erb :first_daft, locals: {}
+    p "#{info}"
+    # erb :first_daft, locals: {}
 end    
 
 post '/second_darft' do
