@@ -9,13 +9,14 @@ enable :sessions
 
 get '/' do
     check_connection()
+    info = getinfo()
     # list = get_file()
     # validated = gettingvalid(list)
     # validcount = howmanyvalid(validated)
     # invalidcount = howmanyinvalid(validated)
     # infoarr = joinscounts(validcount,invalidcount)
-    #  p "#{infoarr}"
-    erb :first_daft, locals: {}
+    p "#{info}"
+    # erb :first_daft, locals: {}
 end    
 
 post '/second_darft' do
