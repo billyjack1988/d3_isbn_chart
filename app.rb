@@ -11,7 +11,7 @@ enable :sessions
 get '/' do
     check_connection()
     info = getinfo()
-    writecsv()
+    writecsv(info)
     # list = get_file()
     # validated = gettingvalid(list)
     # validcount = howmanyvalid(validated)
