@@ -1,21 +1,23 @@
 require 'sinatra'
-require_relative 'bucket_func.rb'
+require_relative 'databasefunc.rb'
 require_relative 'functions.rb'
 require "csv"
 require 'rubygems'
-require 'aws-sdk'
+
+require 'pg'
 
 load './local_env.rb' if File.exist?('./local_env.rb')
 enable :sessions
 
 get '/' do
-    list = get_file()
-    validated = gettingvalid(list)
-    validcount = howmanyvalid(validated)
-    invalidcount = howmanyinvalid(validated)
-    infoarr = joinscounts(validcount,invalidcount)
+    check_connection()
+    # list = get_file()
+    # validated = gettingvalid(list)
+    # validcount = howmanyvalid(validated)
+    # invalidcount = howmanyinvalid(validated)
+    # infoarr = joinscounts(validcount,invalidcount)
     #  p "#{infoarr}"
-    erb :first_daft, locals: {infoarr:infoarr}
+    erb :first_daft, locals: {}
 end    
 
 post '/second_darft' do
