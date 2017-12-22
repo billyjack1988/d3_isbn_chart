@@ -3,9 +3,7 @@ require_relative 'databasefunc.rb'
 require_relative 'functions.rb'
 require "csv"
 require 'rubygems'
-
 require 'pg'
-
 load './local_env.rb' if File.exist?('./local_env.rb')
 enable :sessions
 
@@ -39,6 +37,11 @@ post '/second_darft' do
   post '/ld_page' do
     erb :ld_page
 end
+
+post '/coffee' do 
+  erb :coffee
+end 
+
 
 
 
