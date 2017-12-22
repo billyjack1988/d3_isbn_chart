@@ -1,6 +1,7 @@
 require 'sinatra'
 require_relative 'databasefunc.rb'
 require_relative 'functions.rb'
+require_relative 'csvfunc.rb'
 require "csv"
 require 'rubygems'
 require 'pg'
@@ -10,6 +11,7 @@ enable :sessions
 get '/' do
     check_connection()
     info = getinfo()
+    writecsv()
     # list = get_file()
     # validated = gettingvalid(list)
     # validcount = howmanyvalid(validated)
