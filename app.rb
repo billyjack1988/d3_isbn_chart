@@ -17,8 +17,8 @@ get '/' do
     # validcount = howmanyvalid(validated)
     # invalidcount = howmanyinvalid(validated)
     # infoarr = joinscounts(validcount,invalidcount)
-    p "#{info}"
-    # erb :first_daft, locals: {}
+    #p "#{info}"
+     erb :first_daft, locals: {}
 end    
 
 post '/second_darft' do
