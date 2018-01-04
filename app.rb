@@ -8,6 +8,7 @@ require 'pg'
 load './local_env.rb' if File.exist?('./local_env.rb')
 enable :sessions
 
+#goin to page one
 get '/' do
     check_connection()
     info = getinfo()
@@ -17,33 +18,41 @@ get '/' do
     # validcount = howmanyvalid(validated)
     # invalidcount = howmanyinvalid(validated)
     # infoarr = joinscounts(validcount,invalidcount)
-    # p "#{info}"
-     erb :first_daft, locals: {}
+    #p "#{info}"
+     erb :first_page, locals: {}
 end    
 
-post '/second_darft' do
-    erb :second_darft
+#to second page with animated bar graph
+post '/to_second_page' do
+    erb :second_page
   end
-
-  post '/offthewall' do
-    erb :raw_data 
-  end
-
-  post '/yup' do
-    erb :try_it
-  end
-
+  
+#to usa map with all the counties  
   post '/usamap' do
     erb :usa_map
   end
 
-  post '/ld_page' do
-    erb :ld_page
+#to the page that have the coffee info  
+  post '/coffee' do 
+    erb :coffee
+  end 
+
+#to the third page with the simple line graph  
+  post '/to_third_page' do
+    erb :third_page
+  end
+
+
+#to the fourth page with a multi line chart  
+  post '/to_fourth_page' do
+    erb :fourth_page
+  end
+
+#to the fith page with a sidways bar chart the has tooltips
+  post '/to_fith_page' do
+    erb :fith_page
 end
 
-post '/coffee' do 
-  erb :coffee
-end 
 
 
 
