@@ -41,11 +41,12 @@ rect:hover {  fill:orange; }
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-var freqData = d3.json("csv/coffee.json", function(error, data){
+var freqData = d3.json("coffee.json", function(error, data){
+    console.log("data", data);
     if (error) throw error;
 });
 
-console.log("freqData", freqData);
+
 
 dashboard('#dashboard',freqData);
 
@@ -54,7 +55,7 @@ function dashboard(id, fData){
     function segColor(c){ return {Black:"black", House:"#e08214",Decaf:"#41ab5d"}[c]; }
     
     // compute total for each coffee.
-    fData.forEach(function(d){d.total=d.freq.Black+d.freq.House+d.freq.Decaf;});
+    //fData.forEach(function(d){d.total=d.freq.Black+d.freq.House+d.freq.Decaf;});
     
     // function to handle histogram.
     function histoGram(fD){ // histogram is a bar chart  t=top r= right b= bottom l= left
