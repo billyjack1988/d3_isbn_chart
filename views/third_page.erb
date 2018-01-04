@@ -31,7 +31,11 @@ var y = d3.scaleLinear().range([height, 0]);
 // define the line
 var valueline = d3.line()
     .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.close); });
+    .y(function(d) { return y(d.cappuccino); });
+
+var valueline2 = d3.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.iced); });
 
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
