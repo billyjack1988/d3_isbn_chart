@@ -41,18 +41,10 @@ rect:hover {  fill:orange; }
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-var freqData=[
-{Brand:'Starbucks',freq:{Black:4786, House:1319, Decaf:249}}
-,{Brand:'Maxwell',freq:{Black:1101, House:412, Decaf:674}}
-,{Brand:'Nest',freq:{Black:932, House:2149, Decaf:418}}
-,{Brand:'MT.Hagen',freq:{Black:832, House:1152, Decaf:1862}}
-,{Brand:'Douwe',freq:{Black:4481, House:3304, Decaf:948}}
-,{Brand:'Black Rifle',freq:{Black:1619, House:167, Decaf:1063}}
-,{Brand:'Folgers',freq:{Black:1819, House:247, Decaf:1203}}
-,{Brand:'McCafe',freq:{Black:4498, House:3852, Decaf:942}}
-,{Brand:'Jacobs',freq:{Black:797, House:1849, Decaf:1534}}
-,{Brand:'Hemp',freq:{Black:162, House:379, Decaf:471}}
-];
+var freqData = d3.json("csv/coffee.json", function(error, data){
+    if (error) throw error;
+});
+
 console.log("freqData", freqData);
 
 dashboard('#dashboard',freqData);
