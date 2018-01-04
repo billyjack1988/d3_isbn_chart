@@ -41,18 +41,6 @@ rect:hover {  fill:orange; }
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-<<<<<<< HEAD
-var fData = d3.json("coffee.json", function(error, data){
-    console.log("data", data);
-    if (error) throw error;
-});
-
-
-
-dashboard('#dashboard',fData);
-
-=======
->>>>>>> b693b634f5229b89535d8776239048f38cfedf0d
 function dashboard(id, fData){
     var barColor = '#57471C';
     function segColor(c){ return {Black:"black", House:"#e08214",Decaf:"#41ab5d"}[c]; }
