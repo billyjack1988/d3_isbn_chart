@@ -41,21 +41,12 @@ rect:hover {  fill:orange; }
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-var freqData = d3.json("coffee.json", function(error, data){
-    console.log("data", data);
-    if (error) throw error;
-});
-
-
-
-dashboard('#dashboard',freqData);
-
 function dashboard(id, fData){
     var barColor = '#57471C';
     function segColor(c){ return {Black:"black", House:"#e08214",Decaf:"#41ab5d"}[c]; }
     
     // compute total for each coffee.
-    //fData.forEach(function(d){d.total=d.freq.Black+d.freq.House+d.freq.Decaf;});
+    fData.forEach(function(d){d.total=d.freq.Black+d.freq.House+d.freq.Decaf;});
     
     // function to handle histogram.
     function histoGram(fD){ // histogram is a bar chart  t=top r= right b= bottom l= left
@@ -235,18 +226,25 @@ function dashboard(id, fData){
         return leg;
     }
     
-    // calculate total frequency by segment for all state.
+    // calculate total frequency by segment for all coffee.
     var tF = ['Black','House','Decaf'].map(function(d){ 
         return {type:d, freq: d3.sum(fData.map(function(t){ return t.freq[d];}))}; 
     });    
     
-    // calculate total frequency by state for all segment.
+    // calculate total frequency by coffe for all segment.
     var sF = fData.map(function(d){return [d.Brand,d.total];});
 
     var hG = histoGram(sF), // create the histogram.
         pC = pieChart(tF), // create the pie-chart.
         leg= legend(tF);  // create the legend.
 }
+d3.json("coffee.json", function(error, data){
+    console.log("data", data);
+    dashboard('#dashboard', data);
+    if (error) throw error;
+
+});
+
 
 
 </script>
