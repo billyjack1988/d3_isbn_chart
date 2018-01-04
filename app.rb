@@ -53,6 +53,12 @@ post '/to_second_page' do
     erb :fith_page
 end
 
+#to the intactive coffe chart
+  post '/to_sixth_page' do
+    erb :interactive_bar
+  end
+  
+
 
 
 
