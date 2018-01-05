@@ -39,7 +39,6 @@ rect:hover {  fill:orange; }
 <body>
 <div id='dashboard'>
 </div>
-<svg> </svg>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 function dashboard(id, fData){
@@ -98,31 +97,15 @@ function dashboard(id, fData){
         function mouseover(d){  // utility function to be called on mouseover.
             // filter for selected state.
             var st = fData.filter(function(s){ return s.Brand == d[0];})[0],
-                nD = d3.keys(st.freq).map(function(s){ return {type:s, freq:st.freq[s]};});
-            console.log("st", st);
-            console.log("nD", nD);
-            d3.select("svg").append("text") //the to append the svg again but this will put text is the svg box
-                .attr("transform", "translate(100,0)")
-                .attr("x", 50)
-                .attr("y", 50)
-                .attr("font-size", "24px")
-                .text(st.Brand)
+                nD = d3.keys(st.freq).map(function(s){ return {type:s, freq:st.freq[s]};
+                d3.select("svg")});
+               
             // call update functions of pie-chart and legend.    
             pC.update(nD);
             leg.update(nD);
-
-            
         }
-
-          
         
-        function mouseout(d){ 
-            d3.select("svg").append("text") //the to append the svg again but this will put text is the svg box
-                .attr("transform", "translate(100,0)")
-                .attr("x", 50)
-                .attr("y", 50)
-                .attr("font-size", "24px")
-                .text("Total Coffee Sales")   // utility function to be called on mouseout.
+        function mouseout(d){    // utility function to be called on mouseout.
             // reset the pie-chart and legend.    
             pC.update(tF);
             leg.update(tF);
@@ -181,19 +164,7 @@ function dashboard(id, fData){
         function mouseover(d){
             // call the update function of histogram with new data.
             hG.update(fData.map(function(v){ 
-                return [v.Brand,v.freq[d.data.type]];
-                console.log("v.Brand,v.freq[d.data.type]", v.Brand,v.freq[d.data.type]);
-            }),segColor(d.data.type));
-                
-            
-            var cType =  
-
-            d3.select("svg").append("text") //the to append the svg again but this will put text is the svg box
-                .attr("transform", "translate(100,0)")
-                .attr("x", 50)
-                .attr("y", 50)
-                .attr("font-size", "24px")
-                .text("")
+                return [v.Brand,v.freq[d.data.type]];}),segColor(d.data.type));
         }
         //Utility function to be called on mouseout a pie slice.
         function mouseout(d){
