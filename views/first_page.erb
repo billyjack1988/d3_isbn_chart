@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <script src="http://d3js.org/d3.v4.min.js"></script>
 
-<center><h3> This is what the data looks like in the csv<h3></center>
+<center><h3> This is what the data looks like in the csv<h3>
 <h4>year,value<br>
 2011,45<br>
 2012,47<br>
 2013,52<br>
 2014,70<br>
 2015,75<br>
-2016,78</h4><br>
+2016,78</h4><br></center>
 
 
 
@@ -22,7 +22,7 @@
         }
  </style>
 
-<html><body>
+<html><body><center>
  <svg id = "svg1" width="600" height="500"></svg>   <%# this is where you set the svg. its the box size that you want to show on your screen  %>
 
 <script>
@@ -91,6 +91,6 @@ var svg = d3.select("svg"), // this is a call func for d3 to select the svg and 
 <form method= "post" action= "/usamap">
     <input type= "submit" value = "USA Map">
 </form>
-
+</center>
 </body>
 </html>
