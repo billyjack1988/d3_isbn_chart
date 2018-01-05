@@ -97,9 +97,11 @@ function dashboard(id, fData){
             .attr("text-anchor", "middle");
         
         function mouseover(d){  // utility function to be called on mouseover.
-            // filter for selected state.
+            // filter for selected brand.
             var st = fData.filter(function(s){ return s.Brand == d[0];})[0],
                 nD = d3.keys(st.freq).map(function(s){ return {type:s, freq:st.freq[s]};});
+                d3.select("#barText").append("text") //the to append the svg again but this will put text is the svg box
+                .text(st.Brand);
             //console.log("st", st);
             //console.log("nD", nD);
             
@@ -108,8 +110,7 @@ function dashboard(id, fData){
             // call update functions of pie-chart and legend.    
             pC.update(nD);
             leg.update(nD);
-            d3.select("#barText").append("text") //the to append the svg again but this will put text is the svg box
-                .text(st.Brand);
+            
             
         }
 
