@@ -188,6 +188,14 @@ function dashboard(id, fData){
                 console.log("d.data.type", d.data.type);
                 return [v.Brand,v.freq[d.data.type]];
                  }),segColor(d.data.type));
+            
+            d3.select("svg").append("text")//the to append the svg again but this will put text is the svg box
+                   .attr("id", "monkey2")
+                   .attr("transform", "translate(100,0)")
+                   .attr("x", 50)
+                   .attr("y", 50)
+                   .attr("font-size", "24px")
+                   .text(d.data.type);
                 
             
       
@@ -196,8 +204,11 @@ function dashboard(id, fData){
         function mouseout(d){
             // call the update function of histogram with all data.
             hG.update(fData.map(function(v){
+                 d3.select("#monkey2").remove()
                 return [v.Brand,v.total];}), barColor);
+                
         }
+       
         // Animating the pie-slice requiring a custom function which specifies
         // how the intermediate paths should be drawn.
         function arcTween(a) {

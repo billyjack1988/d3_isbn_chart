@@ -26,14 +26,14 @@
         "Brand": "MT.Hagen",
         "freq": {
             "Black": 832,
-            "House": 1152,
-            "Decaf": 1862
+            "House": 1192,
+            "Decaf": 1000
         }
     },
     {
         "Brand": "Douwe",
         "freq": {
-            "Black": 4481,
+            "Black": 3392,
             "House": 3304,
             "Decaf": 948
         }
