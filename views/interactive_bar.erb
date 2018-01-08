@@ -23,6 +23,7 @@ rect:hover {  fill:orange; }
     display:inline-block;
     border-collapse: collapse;
     border-spacing: 0px;
+   
 }
 .legend td{
     padding:4px 5px;
@@ -32,6 +33,17 @@ rect:hover {  fill:orange; }
     align:right;
     width:50px;
 }
+.table_move{
+ transition: all 0.2s;
+    transform: scale(0.98);
+    will-change: transform;
+    transform: scale(1);
+}
+
+.table_move.active{
+    transform: scale(1);
+}
+
 
 
 </style>
@@ -179,6 +191,9 @@ function dashboard(id, fData){
                 console.log("d.data.type", d.data.type);
                 return [v.Brand,v.freq[d.data.type]];
                  }),segColor(d.data.type));
+        
+        
+                        
             
             d3.select("svg").append("text")//the to append the svg again but this will put text is the svg box
                    .attr("id", "monkey2")
@@ -187,10 +202,15 @@ function dashboard(id, fData){
                    .attr("y", 50)
                    .attr("font-size", "24px")
                    .text(d.data.type);
-                
-            
-      
+        
         }
+
+      //  function tableBox(){
+          //  document.getElementbyId('tableC').addEventListener('mouseover', (e) => {
+         //           isDown = true;
+         //               slider.classList.add('active');
+         //   });
+        //}
         //Utility function to be called on mouseout a pie slice.
         function mouseout(d){
             // call the update function of histogram with all data.
@@ -216,9 +236,9 @@ function dashboard(id, fData){
             
         // create table for legend.
         var legend = d3.select(id).append("table")
-                        .attr('class','legend')
-                        .attr('id', 'tableC');
-        
+                        .attr('class','legend');
+                        
+          
         // create one row per segment.
         var tr = legend.append("tbody").selectAll("tr").data(lD).enter().append("tr");
             
@@ -228,7 +248,8 @@ function dashboard(id, fData){
 			.attr("fill",function(d){ return segColor(d.type); });
             
         // create the second column for each segment.
-        tr.append("td").text(function(d){ return d.type;});
+        tr.append("td").text(function(d){ return d.type;})
+            .attr("id", "tableWord");
         // create the third column for each segment.
         tr.append("td").attr("class",'legendFreq')
             .text(function(d){ return d3.format(",")(d.freq);});
@@ -242,9 +263,10 @@ function dashboard(id, fData){
             // update the frequencies.
             l.select(".legendFreq").text(function(d){ return d3.format(",")(d.freq);});
             // update the percentage column.
-            l.select(".legendPerc").text(function(d){ return getLegend(d,nD);});        
+            l.select(".legendPerc").text(function(d){ return getLegend(d,nD);}); 
+
         }
-        
+    
         function getLegend(d,aD){ // Utility function to compute percentage.
             return d3.format("%")(d.freq/d3.sum(aD.map(function(v){ return v.freq; })));
         }
