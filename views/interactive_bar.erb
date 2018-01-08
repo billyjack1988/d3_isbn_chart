@@ -11,14 +11,12 @@ rect:hover {  fill:orange; }
 .axis {  font: 10px sans-serif; }
 .legend tr{    border-bottom:1px solid grey; }
 .legend tr:first-child{    border-top:1px solid grey; }
-
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
 .x.axis path {  display: none; }
 .legend{
     margin-bottom:76px;
@@ -62,17 +60,14 @@ function dashboard(id, fData){
             .attr("width", hGDim.w + hGDim.l + hGDim.r)
             .attr("height", hGDim.h + hGDim.t + hGDim.b).append("g")//  this is not specific to d3, it is specific to svg attributes.It is not that different from the use case of "grouping" in graphical drawings such as ones you would do in a powerpoint presentation.
             .attr("transform", "translate(" + hGDim.l + "," + hGDim.t + ")");
-
         // create function for x-axis mapping.
         var x = d3.scale.ordinal().rangeRoundBands([0, hGDim.w], 0.1)
                 .domain(fD.map(function(d) { return d[0]; }));
                // console.log("x", x);
-
         // Add x-axis to the histogram svg.
         hGsvg.append("g").attr("class", "x axis")
             .attr("transform", "translate(0," + hGDim.h + ")")
             .call(d3.svg.axis().scale(x).orient("bottom"));
-
         // Create function for y-axis map.
         var y = d3.scale.linear().range([hGDim.h, 0])
                 .domain([0, d3.max(fD, function(d) { return d[1]; })]);
@@ -119,7 +114,6 @@ function dashboard(id, fData){
             
             
         }
-
           
         
         function mouseout(d){ 
@@ -145,7 +139,6 @@ function dashboard(id, fData){
                 .attr("y", function(d) {return y(d[1]); })
                 .attr("height", function(d) { return hGDim.h - y(d[1]); })
                 .attr("fill", color);
-
             // transition the frequency labels location and change value.
             bars.select("text").transition().duration(500)
                 .text(function(d){ return d3.format(",")(d[1])})
@@ -166,16 +159,13 @@ function dashboard(id, fData){
         
         // create function to draw the arcs of the pie slices.
         var arc = d3.svg.arc().outerRadius(pieDim.r - 10).innerRadius(0);
-
         // create a function to compute the pie slice angles.
         var pie = d3.layout.pie().sort(null).value(function(d) { return d.freq; });
-
         // Draw the pie slices.
         piesvg.selectAll("path").data(pie(pD)).enter().append("path").attr("d", arc)
             .each(function(d) { this._current = d; })
             .style("fill", function(d) { return segColor(d.data.type); })
             .on("mouseover",mouseover).on("mouseout",mouseout);
-
         // create function to update pie-chart. This will be used by histogram.
         pC.update = function(nD){
             piesvg.selectAll("path").data(pie(nD)).transition().duration(500)
@@ -236,23 +226,18 @@ function dashboard(id, fData){
             
         // create the second column for each segment.
         tr.append("td").text(function(d){ return d.type;});
-
         // create the third column for each segment.
         tr.append("td").attr("class",'legendFreq')
             .text(function(d){ return d3.format(",")(d.freq);});
-
         // create the fourth column for each segment.
         tr.append("td").attr("class",'legendPerc')
             .text(function(d){ return getLegend(d,lD);});
-
         // Utility function to be used to update the legend.
         leg.update = function(nD){
             // update the data attached to the row elements.
             var l = legend.select("tbody").selectAll("tr").data(nD);
-
             // update the frequencies.
             l.select(".legendFreq").text(function(d){ return d3.format(",")(d.freq);});
-
             // update the percentage column.
             l.select(".legendPerc").text(function(d){ return getLegend(d,nD);});        
         }
@@ -260,7 +245,6 @@ function dashboard(id, fData){
         function getLegend(d,aD){ // Utility function to compute percentage.
             return d3.format("%")(d.freq/d3.sum(aD.map(function(v){ return v.freq; })));
         }
-
         return leg;
     }
     
@@ -271,7 +255,6 @@ function dashboard(id, fData){
     
     // calculate total frequency by coffe for all segment.
     var sF = fData.map(function(d){return [d.Brand,d.total];});
-
     var hG = histoGram(sF), // create the histogram.
         pC = pieChart(tF), // create the pie-chart.
         leg= legend(tF);  // create the legend.
@@ -280,12 +263,9 @@ d3.json("coffee.json", function(error, data){
     console.log("data", data);
     dashboard('#dashboard', data);
     if (error) throw error;
-
 });
-
-
-
 </script>
+
 
 
 
