@@ -94,28 +94,22 @@ function dashboard(id, fData){
             // filter for selected brand.
             var st = fData.filter(function(s){ return s.Brand == d[0];})[0],
                 nD = d3.keys(st.freq).map(function(s){ return {type:s, freq:st.freq[s]};});
-                d3.select("svg").append("text")//the to append the svg again but this will put text is the svg box
-                   .attr("id", "monkey")
+                d3.select("#pieC").append("text")//the to append the svg again but this will put text is the svg box
+                  .attr("id", "monkey")
                    .attr("transform", "translate(100,0)")
-                   .attr("x", 300)
+                   .attr("x", 25)
                    .attr("y", 25)
                    .attr("font-size", "24px")
                    .text(st.Brand);
-            console.log("st.freq", st.freq);
-            console.log("nD", nD);
-            
-            
+            //console.log("st.freq", st.freq);
+            //console.log("nD", nD)
             // call update functions of pie-chart and legend.    
             pC.update(nD);
-            leg.update(nD);
-            
-            
+            leg.update(nD); 
         }
-          
-        
-        function mouseout(d){ 
-          
-                d3.select("#monkey").remove()
+           
+        function mouseout(d){         
+            d3.select("#monkey").remove()
           //document.getElementById("monkey").innerHTML = "";   // utility function to be called on mouseout.
             // reset the pie-chart and legend.    
             pC.update(tF);
@@ -145,11 +139,12 @@ function dashboard(id, fData){
     
     // function to handle pieChart.
     function pieChart(pD){
-        var pC ={},    pieDim ={w:250, h: 250};
+        var pC ={},    pieDim ={w:250, h: 300};
         pieDim.r = Math.min(pieDim.w, pieDim.h) / 2;
                 
         // create svg for pie chart.
         var piesvg = d3.select(id).append("svg")
+            .attr("id", "pieC")
             .attr("width", pieDim.w).attr("height", pieDim.h).append("g")
             .attr("transform", "translate("+pieDim.w/2+","+pieDim.h/2+")");
         
