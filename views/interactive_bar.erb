@@ -96,15 +96,15 @@ function dashboard(id, fData){
             // filter for selected brand.
             var st = fData.filter(function(s){ return s.Brand == d[0];})[0],
                 nD = d3.keys(st.freq).map(function(s){ return {type:s, freq:st.freq[s]};});
-                d3.select("svg").append("text")//the to append the svg again but this will put text is the svg box
-                   .attr("id", "monkey")
-                   .attr("transform", "translate(100,0)")
-                   .attr("x", 50)
-                   .attr("y", 50)
-                   .attr("font-size", "24px")
-                   .text(st.Brand);
-            console.log("st.freq", st.freq);
-            console.log("nD", nD);
+               // d3.select("svg").append("text")//the to append the svg again but this will put text is the svg box
+                 //  .attr("id", "monkey")
+                   //.attr("transform", "translate(100,0)")
+                   //.attr("x", 50)
+                   //.attr("y", 50)
+                   //.attr("font-size", "24px")
+                   //.text(st.Brand);
+            //console.log("st.freq", st.freq);
+            //console.log("nD", nD);
             
 
             
