@@ -32,11 +32,9 @@ rect:hover {  fill:orange; }
     align:right;
     width:50px;
 }
-
-
 </style>
 <body>
-
+<center><h1>Total Coffee Sales For 2099</h1></center>
 
 <div id='dashboard'>
 </div>
@@ -99,18 +97,24 @@ function dashboard(id, fData){
                 d3.select("svg").append("text")//the to append the svg again but this will put text is the svg box
                    .attr("id", "monkey")
                    .attr("transform", "translate(100,0)")
-                   .attr("x", 100)
+                   .attr("x", 50)
                    .attr("y", 50)
                    .attr("font-size", "24px")
                    .text(st.Brand);
-            //console.log("st", st);
-            //console.log("nD", nD);
+            console.log("st.freq", st.freq);
+            console.log("nD", nD);
+            
+            
             // call update functions of pie-chart and legend.    
             pC.update(nD);
-            leg.update(nD); 
-        } 
-
-        function mouseout(d){          
+            leg.update(nD);
+            
+            
+        }
+          
+        
+        function mouseout(d){ 
+          
                 d3.select("#monkey").remove()
           //document.getElementById("monkey").innerHTML = "";   // utility function to be called on mouseout.
             // reset the pie-chart and legend.    
@@ -170,13 +174,27 @@ function dashboard(id, fData){
                 console.log("d.data.type", d.data.type);
                 return [v.Brand,v.freq[d.data.type]];
                  }),segColor(d.data.type));
+            
+            d3.select("svg").append("text")//the to append the svg again but this will put text is the svg box
+                   .attr("id", "monkey2")
+                   .attr("transform", "translate(100,0)")
+                   .attr("x", 50)
+                   .attr("y", 50)
+                   .attr("font-size", "24px")
+                   .text(d.data.type);
+                
+            
+      
         }
         //Utility function to be called on mouseout a pie slice.
         function mouseout(d){
             // call the update function of histogram with all data.
             hG.update(fData.map(function(v){
+                 d3.select("#monkey2").remove()
                 return [v.Brand,v.total];}), barColor);
+                
         }
+       
         // Animating the pie-slice requiring a custom function which specifies
         // how the intermediate paths should be drawn.
         function arcTween(a) {
@@ -243,8 +261,3 @@ d3.json("coffee.json", function(error, data){
     if (error) throw error;
 });
 </script>
-
-
-
-
-
