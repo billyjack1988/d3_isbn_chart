@@ -1,0 +1,131 @@
+<!doctype html>
+<meta charset="utf-8">
+<html>
+<head>
+<title> FitBit</title>
+<style>
+    .line {
+     fill: none;
+     stroke: steelblue;
+     stroke-width: 2px;
+    }
+
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 80px;
+        height: 55px;
+        padding: 2px;
+        font: 12px sans-serif;
+        background: lightsteelblue;
+        border: 0px;
+        border-radius: 8px;
+        border-color: black;
+        border-width: 10px;
+        pointer-events: none;
+    }
+</style>
+<centr>
+<h1> FitBit Sleep Efficiency </h1>
+</center>
+</head>
+<body>
+<div id= "fitBit"></div>
+<script src="http://d3js.org/d3.v4.min.js"></script>
+<script>
+   
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+                    width = 500 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
+
+    var parseTime = d3.timeParse("%Y-%m-%d");
+
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    var div = d3.select("body")
+                .append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0);
+
+    var eLine = d3.line()
+                    .x(function(d) {
+                        return x(d.date);
+                    })
+                    .y(function(d){
+                        return y(d.efficiency);
+                    });
+
+       var svg = d3.select("body").append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");              
+
+
+    d3.csv("csv/sleep.csv", function(error, data){
+        if (error) throw error;
+
+        data.forEach(function(d) {
+            d.date = parseTime(d.date);
+            d.efficiency = +d.efficiency;
+            //console.log("d.date", d.date)
+            //console.log("d.efficiency", d.efficiency);
+        });
+
+        x.domain(d3.extent(data, function(d) {
+            return d.date;
+        }));
+        
+        y.domain(d3.extent(data, function(d) {
+            return d.efficiency;
+        }));
+
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", eLine);
+    
+    svg.selectAll("dot")
+        .data(data)
+        .enter().append("circle")
+            .attr("r", 5)
+            .attr("cx", function(d) {
+                return x(d.date);
+            })
+            .attr("cy", function(d) {
+                return y(d.efficiency);
+                })
+            .on("mouseover", function(d) {
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                div.html(d.minutesAsleep + " Minutes Asleep " + "<br/>" + d.minutesAwake + " Minutes Awake ")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");   
+                            })
+            .on("mouseout", function(d) {
+                div.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            })
+
+    svg.append("g")
+        .attr("transform", "translate(0," + height +")")
+        .call(d3.axisBottom(x));
+
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+    });
+
+
+
+
+</script>
+</body>
+
+
+
+
+</html>
