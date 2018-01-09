@@ -25,6 +25,9 @@
         pointer-events: none;
     }
 </style>
+<centr>
+<h1> FitBit Sleep Efficiency </h1>
+</center>
 </head>
 <body>
 <div id= "fitBit"></div>
@@ -32,8 +35,8 @@
 <script>
    
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
-                    width = 1000 - margin.left - margin.right,
-                    height = 600 - margin.top - margin.bottom;
+                    width = 500 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
 
     var parseTime = d3.timeParse("%Y-%m-%d");
 
@@ -115,6 +118,9 @@
         .call(d3.axisLeft(y));
 
     });
+
+
+
 
 </script>
 </body>
