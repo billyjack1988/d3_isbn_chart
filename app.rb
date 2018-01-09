@@ -58,7 +58,9 @@ end
     erb :interactive_bar
   end
 
-
+post '/fitbit' do
+  erb :fitbit
+end
 
   
 
