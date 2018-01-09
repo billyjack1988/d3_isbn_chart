@@ -58,7 +58,7 @@
                         return y(d.efficiency);
                     });
 
-       var svg = d3.select("body").append("svg")
+       var svg1 = d3.select("body").append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                   .append("g")
@@ -83,12 +83,12 @@
             return d.efficiency;
         }));
 
-    svg.append("path")
+    svg1.append("path")
         .data([data])
         .attr("class", "line")
         .attr("d", eLine);
     
-    svg.selectAll("dot")
+    svg1.selectAll("dot")
         .data(data)
         .enter().append("circle")
             .attr("r", 5)
@@ -112,14 +112,15 @@
                     .style("opacity", 0);
             })
 
-    svg.append("g")
+    svg1.append("g")
         .attr("transform", "translate(0," + height +")")
         .call(d3.axisBottom(x));
 
-    svg.append("g")
+    svg1.append("g")
         .call(d3.axisLeft(y));
 
     });
+
 
 
 
