@@ -1,15 +1,7 @@
 
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style> /* set the CSS */
 
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-}
-
-</style>
 <body>
 
 <!-- load the d3.js library -->    	
@@ -60,7 +52,7 @@ d3.csv("csv/employees.csv", function(error, data) {
   // Add the valueline path.
   svg.append("path")
       .data([data])
-      .attr("class", "line")
+      .attr("class", "line1")
       .attr("d", valueline);
 
   // Add the X Axis
