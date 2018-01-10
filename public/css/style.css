@@ -1,8 +1,10 @@
-.bar1 {
+/* this is bbar one */
+
+.bar {
     fill: steelblue;
 }
 
-.highlight1 {
+.highlight {
     fill: orange;
 }
 
@@ -10,11 +12,17 @@
     background-color: blue;
 }
 
+
+/* this is thrid page */
+
 .line1 {
     fill: none;
     stroke: rgb(65, 243, 11);
     stroke-width: 2px;
 }
+
+
+/* this is fourth pag */
 
 .axis--x1 path {
     display: none;
@@ -29,6 +37,9 @@
 .bar3 {
     fill: #6F257F;
 }
+
+
+/* this is the fifth page */
 
 .axis path,
 .axis line {
@@ -48,58 +59,8 @@
     stroke-width: 2px;
 }
 
-path {
-    stroke: #fff;
-}
 
-path:hover {
-    opacity: 0.9;
-}
-
-rect:hover {
-    fill: red;
-}
-
-.axis {
-    font: 10px sans-serif;
-}
-
-.legend tr {
-    border-bottom: 1px solid grey;
-}
-
-.legend tr:first-child {
-    border-top: 1px solid grey;
-}
-
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
-.x.axis path {
-    display: none;
-}
-
-.legend {
-    margin-bottom: 76px;
-    display: inline-block;
-    border-collapse: collapse;
-    border-spacing: 0px;
-}
-
-.legend td {
-    padding: 4px 5px;
-    vertical-align: bottom;
-}
-
-.legendFreq,
-.legendPerc {
-    align: right;
-    width: 50px;
-}
+/* this is fitbit */
 
 .line4 {
     fill: none;

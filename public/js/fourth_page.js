@@ -61,12 +61,12 @@ d3.tsv("csv/yup.tsv", type, function(error, data) {
     }));
 
     g.append("g")
-        .attr("class", "axis axis--x")
+        .attr("class", "axis--x1")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 
     g.append("g")
-        .attr("class", "axis axis--y")
+        .attr("class", "axis--y")
         .call(d3.axisLeft(y))
         .append("text")
         .attr("transform", "rotate(-90)")
@@ -81,7 +81,7 @@ d3.tsv("csv/yup.tsv", type, function(error, data) {
         .attr("class", "city");
 
     city.append("path")
-        .attr("class", "line")
+        .attr("class", "line2")
         .attr("d", function(d) {
             return line(d.values);
         })
