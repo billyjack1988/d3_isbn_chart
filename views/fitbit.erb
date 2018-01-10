@@ -82,6 +82,7 @@
         .data(data)
         .enter().append("circle")
             .attr("r", 5)
+            .style("fill", "orange")
             .attr("cx", function(d) {
                 return x(d.date);
             })
