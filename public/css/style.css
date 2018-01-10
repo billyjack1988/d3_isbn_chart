@@ -1,3 +1,5 @@
+/* this is bbar one */
+
 .bar1 {
     fill: steelblue;
 }
@@ -10,11 +12,17 @@
     background-color: blue;
 }
 
+
+/* this is thrid page */
+
 .line1 {
     fill: none;
     stroke: rgb(65, 243, 11);
     stroke-width: 2px;
 }
+
+
+/* this is fourth pag */
 
 .axis--x1 path {
     display: none;
@@ -29,6 +37,9 @@
 .bar3 {
     fill: #6F257F;
 }
+
+
+/* this is the fifth page */
 
 .axis path,
 .axis line {
@@ -47,6 +58,9 @@
     stroke: steelblue;
     stroke-width: 2px;
 }
+
+
+/* this is interactive pie and bar */
 
 path {
     stroke: #fff;
@@ -100,6 +114,9 @@ rect:hover {
     align: right;
     width: 50px;
 }
+
+
+/* this is fitbit */
 
 .line4 {
     fill: none;

@@ -51,10 +51,10 @@ d3.csv("csv/XYZ.csv", function(error, data) { // this is where the d3 id called 
         .attr("stroke", "black")
         .text("Stock Price");
 
-    g.selectAll(".bar")
+    g.selectAll(".bar1")
         .data(data)
         .enter().append("rect") // We have created dynamic bars with our data using the SVG rectangle element.
-        .attr("class", "bar") // We also add a class "bar" to the rectangle element.
+        .attr("class", "bar1") // We also add a class "bar" to the rectangle element.
         .attr("x", function(d) {
             return xScale(d.year);
         }) // We use the x scale created earlier and pass the year value from our data. The x scales returns the corresponding x value from the range specified to our scale. In this case, it is the width of the SVG.
