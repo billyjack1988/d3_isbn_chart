@@ -22,6 +22,7 @@
 
 <html><body><center>
  <svg id = "svg1" width="600" height="500"></svg>   <%# this is where you set the svg. its the box size that you want to show on your screen  %>
+<<<<<<< HEAD
 
 <script>
 var svg = d3.select("svg"), // this is a call func for d3 to select the svg and apply the margin, width, and height. so its easy to change if needed
@@ -82,6 +83,9 @@ var svg = d3.select("svg"), // this is a call func for d3 to select the svg and 
          .attr("width", xScale.bandwidth()) // The width of our bars would be determined by the scaleBand() function. So, the x-scale returns a calculated bandwidth from the range and padding provided to the x-scale.
          .attr("height", function(d) { return height - yScale(d.value); }); //The height of the bar would be calculated as height - yScale(d.value). This would be the height of the SVG minus the corresponding y-value of the bar from the y-scale. Remember that the y-value here would be the tip of the bar since it is calculated from the origin and origin is at (0,0).
     });
+=======
+<script src="/js/first_page.js">
+>>>>>>> 69f5249578256e48d13ca3fe5ca8c66eaff46161
 </script>
 <form method= "post" action= "/to_second_page">
     <input type= "submit" value = "Animated Bar Chart">
