@@ -62,6 +62,10 @@ post '/fitbit' do
   erb :fitbit
 end
 
+post '/rXdata' do
+  erb :r_X_data
+end 
+
   
 
 
