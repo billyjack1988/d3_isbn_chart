@@ -31,10 +31,31 @@
                 .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
     
 
-d3.csv("csv/r_X_csv.csv", function(d, i, columns){
-    console.log("d", d);
-    return d;
-})
+d3.csv("csv/r_X_csv.csv", function(error, data) {
+       // console.log("d", d)
+
+        data.forEach(function(d) {
+            d.id = d.id;
+            d.generic_name = d.generic_name;
+            d.manufacturer_code = d.manufacturer_code;
+            d.suggested_wholesale_price = d.suggested_wholesale_price;
+            d.bid_price = d.bid_price;
+            d.priority = d.priority;
+            d.saving = d.saving;
+            console.log("id", d.id)
+            console.log("generic_name", d.generic_name);
+            console.log("manufacturer_code", d.manufacturer_code);
+            console.log("suggested_wholesale_price", d.suggested_wholesale_price);
+            console.log("bid_price", d.bid_price);
+            console.log("priority", d.priority);
+            console.log("saving", d.saving);
+        });
+
+    });
+    
+    
+
+
 
 </script>
 </body>
